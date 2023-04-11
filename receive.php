@@ -134,7 +134,7 @@ if(isset($_POST['signup'])){
 
 // SIGN IN
 else if(isset($_POST["signin"])){
-    echo "sign in" . "<br>";
+    // echo "sign in" . "<br>";
 if (!empty($_POST['username']) && !empty($_POST['password'])) {
     echo "not empty" . "<br>";
     try {
