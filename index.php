@@ -2,6 +2,13 @@
 // Start the session
 session_start();
 
+// Check if the user is not logged in
+if (!isset($_SESSION['logged_in'])) {
+    // Redirect to the register page using JavaScript
+    echo "<script>location.href='signup.php';</script>";
+    exit();
+}
+
 // if the user has not been active for 10 minutes, log them out
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 600)) {
     // last request was more than 10 minutes ago
@@ -9,15 +16,10 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     session_destroy();   // destroy session data in storage
 }
 
-// Check if the user is not logged in
-if (!isset($_SESSION['logged_in'])) {
-    // Redirect to the register page
-    header("Location: signup.php");
-    exit();
-}
-
+$_SESSION['LAST_ACTIVITY'] = time();
 $_SESSION['logged_in'] = true;
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,9 +29,6 @@ $_SESSION['logged_in'] = true;
     <title>Notes</title>
 </head>
 <body>
-
-
-
     <form method="POST" action="receive.php">
         <p>
             <input style="float: right;" type="submit" value="Log Out" name="logout" id="logout">
@@ -55,10 +54,9 @@ $_SESSION['logged_in'] = true;
     <hr>
 
     <h2>Notes:</h2>
-<?php
+    <?php
 
-
-try {
+    try {
     $servername = "containers-us-west-7.railway.app";
     $username = "root";
     $password = "Qfyzz0QzwmxY3pjiOMDd";
@@ -250,9 +248,7 @@ if (isset($_POST['imageupload'])) {
     $id = $_POST['id'];
     $sql = "DELETE FROM note WHERE id = '$id'";
     $query = $mysqli->query($sql);
-    // header("Location: index.php");    
-    echo "<script>location.href='index.php';</script>";
-
+    header("Location: index.php");    
 } 
 
 
