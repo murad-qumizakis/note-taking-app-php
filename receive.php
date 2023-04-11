@@ -163,7 +163,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
                     $_SESSION['error'] = 'User is not active, please activate your account.'. "<br>";
                     // header('Location: signin.php');
                 } else {
-                    echo "user active" . "<br>";
+                    // echo "user active" . "<br>";
                     $hash = $row['password'];
                     // check if the password is correct
                     if (password_verify($password, $hash)) {
