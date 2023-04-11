@@ -136,7 +136,7 @@ if(isset($_POST['signup'])){
 else if(isset($_POST["signin"])){
     // echo "sign in" . "<br>";
 if (!empty($_POST['username']) && !empty($_POST['password'])) {
-    echo "not empty" . "<br>";
+    // echo "not empty" . "<br>";
     try {
         // set a session var for the attempts
         if(!isset($_SESSION["attempts"])){
@@ -155,7 +155,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
             // header('Location: signin.php');
         } else {
 
-            echo "user found" . "<br>";
+            // echo "user found" . "<br>";
                 $row = $query->fetch_assoc();
                 // check if the account is activated
                 if ($row['active'] != 1) {
@@ -167,7 +167,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
                     $hash = $row['password'];
                     // check if the password is correct
                     if (password_verify($password, $hash)) {
-                        echo "password verified" . "<br>";
+                        // echo "password verified" . "<br>";
                         $_SESSION['user'] = $row['id'];
                         $_SESSION['success'] = 'You are now logged in.' . "<br>";
                         unset($_SESSION['attempts']);
