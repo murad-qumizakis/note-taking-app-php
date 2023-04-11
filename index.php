@@ -2,6 +2,7 @@
 // Start the session
 session_start();
 
+
 // if the user has not been active for 10 minutes, log them out
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 600)) {
     // last request was more than 10 minutes ago
@@ -130,7 +131,8 @@ if ($result->num_rows > 0) {
         // $note_content = mysqli_real_escape_string($conn, $_POST['note_content']);
         $sql = "UPDATE note SET content = '$note_content' WHERE id = '$id'";
         $result = $mysqli->query($sql);
-        header("Location: index.php");
+        // header("Location: index.php");
+        echo "<script>window.location.href = 'index.php';</script>";
         if ($result) {
             echo "Note updated successfully.";
         } else {
@@ -138,7 +140,10 @@ if ($result->num_rows > 0) {
         }
     }
     
-    
+    // where can i find php.ini
+    // php.ini is located in /etc/php/7.4/apache2/php.ini
+    // php info
+    // phpinfo();
 ?>
 <br>
 <br>
@@ -153,6 +158,8 @@ if ($result->num_rows > 0) {
     <br>
 </form>
 <?php
+// i want the ini to accept larger files
+ini_set('upload_max_filesize', '10M');
 // select all images from database
 $mysqli->query("CREATE TABLE IF NOT EXISTS 
 image(
@@ -191,7 +198,7 @@ if ($result->num_rows > 0) {
         $sql = "DELETE FROM image WHERE id = '$id'";
         $result = $mysqli->query($sql);
         if($result) {
-            header("Location: index.php");
+            echo "<script>window.location.href = 'index.php';</script>";
         }
     }
 
