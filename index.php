@@ -159,6 +159,7 @@ if ($result->num_rows > 0) {
 </form>
 <?php
 // i want the ini to accept larger files
+ini_set('post_max_size', '5M');
 ini_set('upload_max_filesize', '10M');
 // select all images from database
 $mysqli->query("CREATE TABLE IF NOT EXISTS 
