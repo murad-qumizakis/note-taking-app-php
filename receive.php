@@ -335,7 +335,7 @@ else if(isset($_POST["createnote"])) {
 
 // LOG OUT
 else if(isset($_POST["logout"])){
-    echo "log out" . "<br>";
+    // echo "log out" . "<br>";
     session_destroy();
     header('Location: signin.php');
 }
