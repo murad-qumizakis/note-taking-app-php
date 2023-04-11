@@ -141,7 +141,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
         // set a session var for the attempts
         if(!isset($_SESSION["attempts"])){
             $_SESSION["attempts"] = 0;
-            echo $_SESSION["attempts"] . "<br>";
+            // echo $_SESSION["attempts"] . "<br>";
         }
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -235,7 +235,7 @@ else if (isset($_POST["newpassword"])){
     $query = $mysqli->query($sql);
     
     if ($query->num_rows == 0) {
-        echo "no user found with this email" . "<br>";
+        // echo "no user found with this email" . "<br>";
         $_SESSION['error'] = 'User does not exists, please sign up.';
         header('Location: login.php');
     } 
@@ -298,7 +298,7 @@ else if(isset($_POST["createnote"])) {
     $_SESSION['activity'] = time();
     
 
-    echo "create note" . "<br>";
+    // echo "create note" . "<br>";
         // create table if not exists
         $mysqli->query("CREATE TABLE IF NOT EXISTS 
         note(
@@ -317,7 +317,7 @@ else if(isset($_POST["createnote"])) {
         $row = $query->fetch_assoc();
         $user = $row['firstname'] . " " . $row['lastname'];
 
-        echo "user: " . $user . "<br>";
+        // echo "user: " . $user . "<br>";
 
 
         $stmt = $mysqli->prepare("INSERT INTO note (user, content, title) VALUES (?, ?, ?)");
