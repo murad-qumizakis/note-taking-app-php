@@ -15,6 +15,10 @@
         <p>
             <input type="text" name="username" id="username">
         </p>
+        <label for="password">Password</label>
+        <p>
+            <input type="password" name="password" id="password">
+        </p>
         <p>
             <input type="submit" value="Get New Password" name="newpassword" id="newpassword">
         </p>

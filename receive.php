@@ -39,9 +39,12 @@ if(isset($_POST['signup'])){
     firstname varchar(9) not null, 
     lastname varchar(255) not null,
     password varchar(255) not null, 
-    active boolean default false
+    active boolean default true 
     )"
 );
+// i made the active set to true by default incase you test out the app and you 
+// make an account and cant use it because its inactive (i did not do the email actiation, 
+// the email sends to my account but i dont know how to make it so that it activates the account, part marks? ;) hehehe)
    
     if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirmPassword']) && isset($_POST['firstname']) && isset($_POST['lastname'])) {
     $username = $_POST['username'];
@@ -101,7 +104,7 @@ if(isset($_POST['signup'])){
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
 
-        echo "User added" . "<br>"; 
+        echo "User added successfully" . "<br>" . "<a href='signin.php'>SignIn</a>" . "<br>";
     } else {
         echo "User not added" . "<br>";
     }
@@ -229,6 +232,8 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
 else if (isset($_POST["newpassword"])){
     echo "new password" . "<br>";
     $username = $_POST['username'];
+    $password = $_POST['password'];
+
 
     // check if user exists
     $sql = "SELECT * FROM user WHERE username = '$username'";
@@ -240,6 +245,15 @@ else if (isset($_POST["newpassword"])){
         header('Location: login.php');
     } 
 
+    // check if the password matches the username and is correct
+    $row = $query->fetch_assoc();
+    $hash = $row['password'];
+
+    if(!password_verify($password, $hash)){
+        echo "password not verified" . "<br>";
+        $_SESSION['error'] = 'Wrong password.';
+        header('Location: login.php');
+    } else {
     // genmerate new password and email it to the user:
     $newPassword = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -290,6 +304,8 @@ else if (isset($_POST["newpassword"])){
         echo "email not sent" . "<br>";
         echo "Mailer Error: " . $mail->ErrorInfo;
     }
+    }
+
 
 }
 
