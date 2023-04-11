@@ -17,8 +17,7 @@ if (!isset($_SESSION['logged_in'])) {
 }
 
 $_SESSION['logged_in'] = true;
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -252,8 +251,6 @@ if (isset($_POST['imageupload'])) {
     $sql = "DELETE FROM note WHERE id = '$id'";
     $query = $mysqli->query($sql);
     header("Location: index.php");    
-
-
 } 
 
 
