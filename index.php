@@ -17,7 +17,8 @@ if (!isset($_SESSION['logged_in'])) {
 }
 
 $_SESSION['logged_in'] = true;
-// header("Location: index.php");?><!DOCTYPE html>
+// header("Location: index.php");?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -193,9 +194,7 @@ if ($result->num_rows > 0) {
             header("Location: index.php");
         }
     }
-?>
 
-<?php
 
 try {
     $servername = "containers-us-west-7.railway.app";
@@ -252,16 +251,9 @@ if (isset($_POST['imageupload'])) {
     $query = $mysqli->query($sql);
     header("Location: index.php");    
 } 
-
-
-
 ?>
-
 <br>
 <br>
-
-
-
 </body>
 </html>
 
