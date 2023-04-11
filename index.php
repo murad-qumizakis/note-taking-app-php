@@ -249,7 +249,9 @@ if (isset($_POST['imageupload'])) {
     $id = $_POST['id'];
     $sql = "DELETE FROM note WHERE id = '$id'";
     $query = $mysqli->query($sql);
-    header("Location: index.php");    
+    // header("Location: index.php");    
+    echo "<script>window.location.href = 'index.php';</script>";
+
 } 
 ?>
 <br>
